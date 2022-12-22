@@ -1,14 +1,15 @@
 import geosoft.gxapi as gxapi
-import geosoft.gxpy as gxpy
-import geosoft.gxpy.gx as gxp
 import geosoft.gxpy.gdb as gxdb
 import geosoft.gxapi as gxapi
 import numpy as np
 import PySimpleGUI as sg
 
 LINE_TYPE_NORMAL = gxapi.DB_LINE_TYPE_NORMAL
+
+
 sg.theme('LightGreen1')
 
+#Run file browser via PySimpleGUI and create list from text file
 
 layout = [[sg.Input(),sg.FileBrowse(key = 'tblfile')],[sg.Button('Do 1ch Table LookUp', key = 'but1')]]
 window = sg.Window("1ch Table Look Up via UAV to OM", layout)
@@ -34,10 +35,9 @@ while True:
 window.close()
 
 
-# запуск выполнения оазисом скрипта
+# Run Oasis table look up
 def rungx():
 
-    # выводит в консоль параметры БД и каналы
     list_chanell_db = gxdb.Geosoft_gdb.open()
     print(list_chanell_db)
     print(gxdb.Geosoft_gdb.list_channels(list_chanell_db))
@@ -61,5 +61,5 @@ def rungx():
     print(res_param)
     gxdb.Geosoft_gdb.write_channel(list_chanell_db,line=line_name_,channel = 'Param',data = res_param,fid=(0.0, 1.0), unit_of_measure=None)
 
-    # проверка выполнения всего кода до сообщения
+    # Correctness push
     gxapi.GXSYS.display_message("GX Python","TEST SUCCESFUL")
