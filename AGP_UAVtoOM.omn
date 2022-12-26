@@ -1,0 +1,6 @@
+/
+/ My Python extensions
+/------------------------------------------------------------------------------
+
+MENU "AGP"
+ITEM "Test"   ,test_extentions.py
